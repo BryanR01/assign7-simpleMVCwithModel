@@ -1,5 +1,6 @@
 const mysql= require('mysql2');
 
+//Grab from Creat User in assignDB
 const data= mysql.createConnection({
 	host: 'localhost',
 	user: 'assignDBuser',
@@ -8,6 +9,7 @@ const data= mysql.createConnection({
 });
 
 // Simulated database
+/*)
 const users = [
   { "id": 1, "fname": "Jim", "lname": "Smith", "username": "jsmith" },
   { "id": 2, "fname": "Jack", "lname": "Kennedy", "username": "jkennedy" },
@@ -18,6 +20,7 @@ const users = [
   { "id": 7, "fname": "Ally", "lname": "Smith", "username": "asmith" },
   { "id": 8, "fname": "Jordan", "lname": "Wilson", "username": "jwilson" }
 ];
+*/
 
 function getUsers(callback) {
   setTimeout(function () {
@@ -34,13 +37,15 @@ function getUsers(callback) {
 
 function addUser(user, callback) {
   setTimeout(function () {
-	const query= 'INSERT INTO users(fname, lname, username, passwd) VALUES(?, ?, ?, ?)';
-	const values= [user.fname, user.lname, user.username, ''];
+	const query= 'INSERT INTO users(fname, lname, username, passwd) VALUES(?, ?, ?, ?)'; //Giving the values sepreately insted of one by one(should work with ? marks)
+	const values= [user.fname, user.lname, user.username, ''];// Can add a place holder password but i dont think it should be nececary
 	
 	data.query(query, values, function(err, results){
 			if(err){
 				console.error("Error inside getUser: ", err);
 				return callback(null);
+				
+				
 			}
 			return callback(results);
 		});
