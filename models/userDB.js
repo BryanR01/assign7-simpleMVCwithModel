@@ -51,4 +51,4 @@ function addUser(user, callback) {
   }, 500);
 }
 
-module.exports = { getUsers, addUser };
+module.exports = { getUsers, addUser };//Done
